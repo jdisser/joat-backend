@@ -1,4 +1,4 @@
-package entities;
+package com.altocirrusapps.apps.joatbackend.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
