@@ -28,8 +28,10 @@ public class User {
 	
 	private String phone;
 	
-	//TODO create Roles type and a one to many association to them
-//	private Role roles;
+	private String password;
+	
+	private UserRole role;
+	
 	
 	public User(long id, @NotBlank String firstName, @NotBlank String lastName, @NotBlank @Email String email,
 			String phone) {
@@ -88,6 +90,26 @@ public class User {
 		this.phone = phone;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public UserRole getRole() {
+		return role;
+	}
+
+
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
