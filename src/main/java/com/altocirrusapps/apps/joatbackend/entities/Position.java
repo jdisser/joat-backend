@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -21,14 +22,18 @@ public class Position {
 	@NotBlank
 	private float lonMin;
 	
+	
+	@OneToOne( mappedBy = "position")
+	private Address address;
+	
 	public Position(long id, @NotBlank float latDeg, @NotBlank float latMin, @NotBlank float lonDeg,
-			@NotBlank float lonMin) {
-		super();
+			@NotBlank float lonMin, Address address) {
 		this.id = id;
 		this.latDeg = latDeg;
 		this.latMin = latMin;
 		this.lonDeg = lonDeg;
 		this.lonMin = lonMin;
+		this.address = address;
 	}
 	
 	public Position() {
