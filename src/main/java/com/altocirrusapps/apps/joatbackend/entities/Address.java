@@ -1,6 +1,7 @@
 package com.altocirrusapps.apps.joatbackend.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class Address {
 	private String country;
 	private String zip;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "position_id")
 	private Position position;
 	

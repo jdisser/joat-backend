@@ -1,6 +1,8 @@
 package com.altocirrusapps.apps.joatbackend.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +25,9 @@ public class Position {
 	private float lonMin;
 	
 	
-	@OneToOne( mappedBy = "position")
+	@OneToOne( mappedBy = "position",
+			fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL)
 	private Address address;
 	
 	public Position(long id, @NotBlank float latDeg, @NotBlank float latMin, @NotBlank float lonDeg,
