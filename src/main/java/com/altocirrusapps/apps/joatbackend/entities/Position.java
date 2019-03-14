@@ -16,11 +16,11 @@ public class Position {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@NotBlank
-	private float latDeg;
+	private int latDeg;
 	@NotBlank
 	private float latMin;
 	@NotBlank
-	private float lonDeg;
+	private int lonDeg;
 	@NotBlank
 	private float lonMin;
 	
@@ -30,7 +30,7 @@ public class Position {
 			cascade = CascadeType.ALL)
 	private Address address;
 	
-	public Position(long id, @NotBlank float latDeg, @NotBlank float latMin, @NotBlank float lonDeg,
+	public Position(long id, @NotBlank int latDeg, @NotBlank float latMin, @NotBlank int lonDeg,
 			@NotBlank float lonMin, Address address) {
 		this.id = id;
 		this.latDeg = latDeg;
@@ -53,7 +53,7 @@ public class Position {
 	public float getLatDeg() {
 		return latDeg;
 	}
-	public void setLatDeg(float latDeg) {
+	public void setLatDeg(int latDeg) {
 		this.latDeg = latDeg;
 	}
 	public float getLatMin() {
@@ -65,7 +65,7 @@ public class Position {
 	public float getLonDeg() {
 		return lonDeg;
 	}
-	public void setLonDeg(float lonDeg) {
+	public void setLonDeg(int lonDeg) {
 		this.lonDeg = lonDeg;
 	}
 	public float getLonMin() {
