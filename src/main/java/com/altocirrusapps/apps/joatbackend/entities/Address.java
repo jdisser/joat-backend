@@ -22,12 +22,7 @@ public class Address {
 	private String country;
 	private String zip;
 	
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "position_id")
-	private Position position;
-	
-	
-	
+
 	
 	public long getId() {
 		return id;
@@ -71,12 +66,7 @@ public class Address {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-	public Position getPosition() {
-		return position;
-	}
-	public void setPosition(Position position) {
-		this.position = position;
-	}
+	
 	
 	
 	

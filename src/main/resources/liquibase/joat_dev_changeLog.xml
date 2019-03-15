@@ -30,30 +30,6 @@
     </changeSet>
 
 
-	<changeSet id="2" author="jdisser" context="initialize">
-        <createTable tableName="position">
-            <column name="id" type="bigint" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="latDeg" type="int">
-            	<constraints nullable="false"/>
-            </column>
-            
-            <column name="latMin" type="float">
-            	<constraints nullable="false"/>
-            </column>
-            <column name="lonDeg" type="int">
-            	<constraints nullable="false"/>
-            </column>
-            <column name="lonMin" type="float">
-            	<constraints nullable="false"/>
-            </column>
-        	
-        </createTable>
-
-    </changeSet>
-
-
 
 	<changeSet id="3" author="jdisser" context="initialize">
         <createTable tableName="address">
@@ -76,16 +52,11 @@
             <column name="zip" type="varchar(32)">
             	<constraints nullable="false"/>
             </column>
-            <column name="position_id" type="bigint"/>	
+          
         	
         </createTable>
         
-        <addForeignKeyConstraint
-            	baseTableName="address"
-            	baseColumnNames="position_id"
-            	constraintName="position_fk"
-            	referencedTableName="position"
-            	referencedColumnNames="id"/>
+       
         
     </changeSet>
 
