@@ -1,19 +1,12 @@
 package com.altocirrusapps.apps.joatbackend.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.Embeddable;
 
-@Entity
+
+@Embeddable
 public class Address {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+
 	
 	private String address1;
 	private String address2;
@@ -24,12 +17,20 @@ public class Address {
 	
 
 	
-	public long getId() {
-		return id;
+	
+	public Address() {
+		
 	}
-	public void setId(long id) {
-		this.id = id;
+	
+	public Address(String address1, String address2, String city, String state, String country, String zip) {
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+		this.zip = zip;
 	}
+	
 	public String getAddress1() {
 		return address1;
 	}

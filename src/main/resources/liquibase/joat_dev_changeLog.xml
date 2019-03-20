@@ -31,33 +31,4 @@
 
 
 
-	<changeSet id="3" author="jdisser" context="initialize">
-        <createTable tableName="address">
-            <column name="id" type="bigint" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="address1" type="varchar(128)">
-            	<constraints nullable="false"/>
-            </column>
-            <column name="address2" type="varchar(128)"/>
-            <column name="city" type="varchar(128)">
-            	<constraints nullable="false"/>
-            </column>
-            <column name="country" type="varchar(64)">
-            	<constraints nullable="false"/>
-            </column>
-            <column name="state" type="varchar(32)">
-            	<constraints nullable="false"/>
-            </column>
-            <column name="zip" type="varchar(32)">
-            	<constraints nullable="false"/>
-            </column>
-          
-        	
-        </createTable>
-        
-       
-        
-    </changeSet>
-
 </databaseChangeLog>
