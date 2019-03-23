@@ -1,18 +1,26 @@
 package com.altocirrusapps.apps.joatbackend.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class CalEvent implements CalSchedulable {
 	
 	
@@ -42,9 +50,8 @@ public abstract class CalEvent implements CalSchedulable {
 	
 	private LocalDateTime changeDate;
 	
-	@OneToOne
-	@JoinColumn(name="cal_entity_id", nullable = false)
-	private CalEntity eventEntity;
+	@Enumerated(EnumType.STRING)
+	protected EventType type;
 	
 	
 
@@ -53,7 +60,7 @@ public abstract class CalEvent implements CalSchedulable {
 	}
 
 	public CalEvent(String description, LocalDateTime startDate, LocalDateTime endDate, String recType, long eventPid,
-			long eventLength, LocalDateTime createdDate, LocalDateTime changeDate) {
+			long eventLength, LocalDateTime createdDate, LocalDateTime changeDate, EventType type) {
 
 		this.recEventEdits = new HashSet<CalEvent>();
 		this.description = description;
@@ -63,6 +70,7 @@ public abstract class CalEvent implements CalSchedulable {
 		this.eventLength = eventLength;
 		this.createdDate = createdDate;
 		this.changeDate = changeDate;
+		this.type = type;
 	}
 
 	public long getId() {
@@ -104,15 +112,7 @@ public abstract class CalEvent implements CalSchedulable {
 	public void setRecType(String recType) {
 		this.recType = recType;
 	}
-/*
-	public long getEventPid() {
-		return eventPid;
-	}
 
-	public void setEventPid(long eventPid) {
-		this.eventPid = eventPid;
-	}
-*/
 	
 	public void setRecEvent(CalEvent ce) {
 		this.recEvent = ce;
@@ -152,6 +152,27 @@ public abstract class CalEvent implements CalSchedulable {
 
 	public void setChangeDate(LocalDateTime changeDate) {
 		this.changeDate = changeDate;
+	}
+	
+	public EventType getType() {
+		return type;
+	}
+
+	public void setType(EventType type) {
+		this.type = type;
+	}
+	
+	public boolean isOccuring(LocalDate date) {
+		//TODO: code to implement parsing and calculating from rec_type
+		return true;
+	}
+	public boolean isBetween(LocalDateTime from, LocalDateTime to) {
+		//TODO: code to implement parsing and calculating from rec_type
+		return true;
+	}
+	public LocalDateTime nextOccurance(LocalDateTime after) {
+		//TODO: code to implement parsing and calculating from rec_type
+		return LocalDateTime.now();
 	}
 	
 	

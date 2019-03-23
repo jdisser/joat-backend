@@ -3,7 +3,7 @@ package com.altocirrusapps.apps.joatbackend.entities;
 import javax.persistence.Entity;
 
 @Entity
-public class Rental extends CalEntity {
+public class Rental extends CalEvent {
 	
 	private int guests;
 	
