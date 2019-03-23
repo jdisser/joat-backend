@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 public abstract class CalEvent implements CalSchedulable {
 	
@@ -41,6 +42,9 @@ public abstract class CalEvent implements CalSchedulable {
 	
 	private LocalDateTime changeDate;
 	
+	@OneToOne
+	@JoinColumn(name="cal_entity_id", nullable = false)
+	private CalEntity eventEntity;
 	
 	
 
