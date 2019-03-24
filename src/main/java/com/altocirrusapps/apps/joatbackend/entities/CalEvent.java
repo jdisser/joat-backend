@@ -36,7 +36,7 @@ public abstract class CalEvent implements CalSchedulable {
 	
 	private String recType;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, optional = true)
 	@JoinColumn(name="eventPid")
 	private CalEvent recEvent;
 	

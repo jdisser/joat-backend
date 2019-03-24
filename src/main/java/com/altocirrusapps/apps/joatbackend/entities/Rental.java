@@ -1,5 +1,7 @@
 package com.altocirrusapps.apps.joatbackend.entities;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 
 @Entity
@@ -9,8 +11,12 @@ public class Rental extends CalEvent {
 	
 	private String notes;
 
-	public Rental(int guests, String notes) {
-		super();
+	public Rental(String description, LocalDateTime startDate, LocalDateTime endDate, String recType, long eventPid,
+			long eventLength, LocalDateTime createdDate, LocalDateTime changeDate, EventType type, int guests, String notes) {
+		
+		super(description, startDate, endDate, recType, eventPid,
+				eventLength, createdDate, changeDate, type);
+		
 		this.guests = guests;
 		this.notes = notes;
 	}
