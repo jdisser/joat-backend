@@ -55,6 +55,10 @@
             </column>
         </createTable>
     </changeSet>
+    
+    <changeSet id="3" author="jdisser" context="testData">
+    	<loadUpdateData tableName="property" primaryKey="id" file="propertyTestData.csv"></loadUpdateData>
+    </changeSet>
 
 
 </databaseChangeLog>
