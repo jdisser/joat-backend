@@ -23,6 +23,11 @@ public class Property {
 		this.name = name;
 		this.address = address;
 	}
+	
+
+	public Property() {
+	
+	}
 
 	public long getId() {
 		return id;
