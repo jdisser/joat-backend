@@ -17,6 +17,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -34,16 +35,25 @@ public abstract class CalEvent implements CalSchedulable {
 	
 	private LocalDateTime endDate;
 	
+	//this is the string representation of the recurrance logic, the default value is "" (null string?)
 	private String recType;
 	
+	@OneToOne
+	//TODO: complete the annotation for one to one
+	//TODO: getters and setters
+	private User createdBy;
+	
+	//this column is either 0 for a parent rec event or contains the id of the edited parent
+	//TODO how to handle the default 0 parent in the association????
 	@ManyToOne(cascade = CascadeType.ALL, optional = true)
-	@JoinColumn(name="eventPid")
+	@JoinColumn(name="eventpid")
 	private CalEvent recEvent;
 	
+	//this field contains the set of edits for this parent event or null
 	@OneToMany(mappedBy = "recEvent")
 	private Set<CalEvent> recEventEdits;
 	
-	
+	//the default value of this field for the recurring events is 0
 	private long eventLength;
 	
 	private LocalDateTime createdDate;
@@ -52,6 +62,10 @@ public abstract class CalEvent implements CalSchedulable {
 	
 	@Enumerated(EnumType.STRING)
 	protected EventType type;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "propertyid")
+	private Property property;
 	
 	
 
