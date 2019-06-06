@@ -1,12 +1,17 @@
 package com.altocirrusapps.apps.joatbackend.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="property")
 public class Property {
 
 	@Id
@@ -17,6 +22,10 @@ public class Property {
 	
 	@Embedded
 	private Address address;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "schedule_id", referencedColumnName = "id")
+	private Schedule schedule;
 
 	public Property(long id, String name, Address address) {
 		this.id = id;

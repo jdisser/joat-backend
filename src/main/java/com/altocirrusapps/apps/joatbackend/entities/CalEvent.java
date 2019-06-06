@@ -1,10 +1,6 @@
 package com.altocirrusapps.apps.joatbackend.entities;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,13 +12,12 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class CalEvent implements CalSchedulable {
+public class CalEvent {
 	
 	
 	@Id
@@ -34,27 +29,6 @@ public abstract class CalEvent implements CalSchedulable {
 	private LocalDateTime startDate;
 	
 	private LocalDateTime endDate;
-	
-	//this is the string representation of the recurrance logic, the default value is "" (null string?)
-	private String recType;
-	
-	@OneToOne
-	//TODO: complete the annotation for one to one
-	//TODO: getters and setters
-	private User createdBy;
-	
-	//this column is either 0 for a parent rec event or contains the id of the edited parent
-	//TODO how to handle the default 0 parent in the association????
-	@ManyToOne(cascade = CascadeType.ALL, optional = true)
-	@JoinColumn(name="eventpid")
-	private CalEvent recEvent;
-	
-	//this field contains the set of edits for this parent event or null
-	@OneToMany(mappedBy = "recEvent")
-	private Set<CalEvent> recEventEdits;
-	
-	//the default value of this field for the recurring events is 0
-	private long eventLength;
 	
 	private LocalDateTime createdDate;
 	
@@ -73,15 +47,13 @@ public abstract class CalEvent implements CalSchedulable {
 	
 	}
 
-	public CalEvent(String description, LocalDateTime startDate, LocalDateTime endDate, String recType, long eventPid,
-			long eventLength, LocalDateTime createdDate, LocalDateTime changeDate, EventType type) {
+	public CalEvent(String description, LocalDateTime startDate, LocalDateTime endDate,
+			LocalDateTime createdDate, LocalDateTime changeDate, EventType type) {
 
-		this.recEventEdits = new HashSet<CalEvent>();
+		
 		this.description = description;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.recType = recType;
-		this.eventLength = eventLength;
 		this.createdDate = createdDate;
 		this.changeDate = changeDate;
 		this.type = type;
@@ -119,38 +91,6 @@ public abstract class CalEvent implements CalSchedulable {
 		this.endDate = endDate;
 	}
 
-	public String getRecType() {
-		return recType;
-	}
-
-	public void setRecType(String recType) {
-		this.recType = recType;
-	}
-
-	
-	public void setRecEvent(CalEvent ce) {
-		this.recEvent = ce;
-	}
-	
-	public CalEvent getRecEvent() {
-		return this.recEvent;
-	}
-	
-	public Set<CalEvent> getRecEventEdits() {
-		return recEventEdits;
-	}
-
-	public void setRecEventEdits(Set<CalEvent> recEventEdits) {
-		this.recEventEdits = recEventEdits;
-	}
-
-	public long getEventLength() {
-		return eventLength;
-	}
-
-	public void setEventLength(long eventLength) {
-		this.eventLength = eventLength;
-	}
 
 	public LocalDateTime getCreatedDate() {
 		return createdDate;
@@ -175,19 +115,7 @@ public abstract class CalEvent implements CalSchedulable {
 	public void setType(EventType type) {
 		this.type = type;
 	}
-	
-	public boolean isOccuring(LocalDate date) {
-		//TODO: code to implement parsing and calculating from rec_type
-		return true;
-	}
-	public boolean isBetween(LocalDateTime from, LocalDateTime to) {
-		//TODO: code to implement parsing and calculating from rec_type
-		return true;
-	}
-	public LocalDateTime nextOccurance(LocalDateTime after) {
-		//TODO: code to implement parsing and calculating from rec_type
-		return LocalDateTime.now();
-	}
+
 	
 	
 }

@@ -60,29 +60,6 @@
     	<loadUpdateData tableName="property" primaryKey="id" file="propertyTestData.csv"></loadUpdateData>
     </changeSet>
 
-	<changeSet id="4" author="jdisser" context="initialize">
-        <createTable tableName="calevent">
-            <column name="id" type="bigint" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            
-            <column name="description" type="varchar(256)"/>
-            <column name="rectype" type="varchar(64)"/>
-            <column name="eventlength" type="bigint"/>
-            <column name="eventtype" type="varchar(16)"/>
-            
-            <column name="startdate" type="datetime"/>
-            <column name="enddate" type="datetime"/>
-            <column name="createddate" type="datetime"/>
-            <column name="changedate" type="datetime"/>
-            
-            <column name="createdBy" type="bigint"/>
-            
-            <column name="eventpid" type = "bigint"/>
-            
-            <column name="propertyid" type = "bigint"/>
-    
-        </createTable>
-    </changeSet>
+	
 
 </databaseChangeLog>
