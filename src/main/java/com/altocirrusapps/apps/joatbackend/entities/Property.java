@@ -19,7 +19,8 @@ public class Property {
 	private long id;
 	
 	private String name;
-	
+
+	//TODO: change to OneToOne
 	@Embedded
 	private Address address;
 	

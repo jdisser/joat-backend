@@ -1,7 +1,6 @@
 package com.altocirrusapps.apps.joatbackend.entities;
 
 import java.time.LocalDateTime;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,14 +9,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
+
+/*
+ * 
+ * This class is inherited using the joined method per
+ * https://thoughts-on-java.org/complete-guide-inheritance-strategies-jpa-hibernate/
+ * 
+ */
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class CalEvent {
+public abstract class CalEvent {
 	
 	
 	@Id
@@ -25,6 +29,7 @@ public class CalEvent {
 	private long id;
 	
 	private String description;
+	
 	
 	private LocalDateTime startDate;
 	
@@ -35,11 +40,8 @@ public class CalEvent {
 	private LocalDateTime changeDate;
 	
 	@Enumerated(EnumType.STRING)
-	protected EventType type;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "propertyid")
-	private Property property;
+	private EventType type;
+
 	
 	
 
