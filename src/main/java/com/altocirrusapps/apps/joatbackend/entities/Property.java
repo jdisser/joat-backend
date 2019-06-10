@@ -20,8 +20,8 @@ public class Property {
 	
 	private String name;
 
-	//TODO: change to OneToOne
-	@Embedded
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	private Address address;
 	
 	@OneToOne(cascade = CascadeType.ALL)

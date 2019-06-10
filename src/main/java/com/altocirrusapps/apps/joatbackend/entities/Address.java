@@ -1,12 +1,18 @@
 package com.altocirrusapps.apps.joatbackend.entities;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
-@Embeddable
+@Entity
 public class Address {
 	
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	
 	private String address1;
 	private String address2;
@@ -66,6 +72,14 @@ public class Address {
 	}
 	public void setZip(String zip) {
 		this.zip = zip;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	
