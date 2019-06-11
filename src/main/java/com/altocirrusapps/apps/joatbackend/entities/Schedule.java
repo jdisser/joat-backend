@@ -3,6 +3,7 @@ package com.altocirrusapps.apps.joatbackend.entities;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,8 +26,10 @@ public class Schedule {
 	@Enumerated(EnumType.STRING)
 	private ScheduleType type;
 	
+	@Column(name = "startdate")
 	private LocalDateTime startDate;
 	
+	@Column(name = "enddate")
 	private LocalDateTime endDate;
 	
 	private String recurrence;

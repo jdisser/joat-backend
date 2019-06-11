@@ -1,6 +1,8 @@
 package com.altocirrusapps.apps.joatbackend.entities;
 
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,13 +32,16 @@ public abstract class CalEvent {
 	
 	private String description;
 	
-	
+	@Column(name = "startdate")
 	private LocalDateTime startDate;
 	
+	@Column(name = "enddate")
 	private LocalDateTime endDate;
 	
+	@Column(name = "createddate")
 	private LocalDateTime createdDate;
 	
+	@Column(name = "changedate")
 	private LocalDateTime changeDate;
 	
 	@Enumerated(EnumType.STRING)

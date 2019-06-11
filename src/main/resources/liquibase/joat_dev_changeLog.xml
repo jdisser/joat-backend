@@ -28,37 +28,74 @@
             </column>
         </createTable>
     </changeSet>
-
-	<changeSet id="2" author="jdisser" context="initialize">
-        <createTable tableName="property">
+    
+    <changeSet id="2" author="jdisser" context="initialize">
+        <createTable tableName="address">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="address1" type="varchar(128)">
+            	<constraints nullable="false" />
+            </column>
+            <column name="address2" type="varchar(128)">
+            	<constraints />
+            </column>
+            <column name="city" type="varchar(128)">
+            	<constraints nullable="false" />
+            </column> 
+            <column name="state" type="varchar(16)">
+            	<constraints nullable="false" />
+            </column> 
+            <column name="zip" type="varchar(16)">
             	<constraints nullable="false"/>
             </column>
-            <column name="address2" type="varchar(128)"/>
-            <column name="city" type="varchar(64)">
-                <constraints nullable="false"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="3" author="jdisser" context="initialize">
+        <createTable tableName="schedule">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="country" type="varchar(128)">
-            	<constraints nullable="false"/>
+            <column name="type" type="varchar(16)">
+            	<constraints nullable="false" />
             </column>
-            <column name="state" type="varchar(32)">
-            	<constraints nullable="false"/>
+            <column name="startdate" type="datetime">
+            	<constraints />
             </column>
-            <column name="zip" type="varchar(32)">
-            	<constraints nullable="false"/>
+            <column name="enddate" type="datetime">
+            	<constraints  />
+            </column>  
+            <column name="recurrence" type="varchar(128)">
+            	<constraints />
             </column>
+            <column name="autorenew" type="boolean">
+            	<constraints />
+            </column>
+            <column name="autoprompt" type="boolean">
+            	<constraints />
+            </column>
+        </createTable>
+    </changeSet>
+
+	<changeSet id="4" author="jdisser" context="initialize">
+        <createTable tableName="property">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="address_id" type="bigint">
+            	<constraints nullable="false" />
+            </column>
+            <column name="schedule_id" type="bigint">
+            	<constraints nullable="false" />
+            </column>  
             <column name="name" type="varchar(32)">
             	<constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     
-    <changeSet id="3" author="jdisser" context="testData">
-    	<loadUpdateData tableName="property" primaryKey="id" file="propertyTestData.csv"></loadUpdateData>
-    </changeSet>
+    
 
 	
 
