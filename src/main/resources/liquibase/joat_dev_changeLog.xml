@@ -45,7 +45,10 @@
             </column> 
             <column name="state" type="varchar(16)">
             	<constraints nullable="false" />
-            </column> 
+            </column>
+            <column name="country" type="varchar(64)">
+            	<constraints nullable="false" />
+            </column>  
             <column name="zip" type="varchar(16)">
             	<constraints nullable="false"/>
             </column>
@@ -53,6 +56,33 @@
     </changeSet>
     
     <changeSet id="3" author="jdisser" context="initialize">
+        <createTable tableName="calevent">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(16)">
+            	<constraints nullable="false" />
+            </column>
+            <column name="startdate" type="datetime">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="enddate" type="datetime">
+            	<constraints  nullable="false"/>
+            </column>
+            <column name="createddate" type="datetime">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="changedate" type="datetime">
+            	<constraints  nullable="false"/>
+            </column>    
+            <column name="type" type="varchar(16)">
+            	<constraints nullable="false"/>
+            </column>
+            
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="4" author="jdisser" context="initialize">
         <createTable tableName="schedule">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -77,8 +107,31 @@
             </column>
         </createTable>
     </changeSet>
+    
+    <changeSet id="5" author="jdisser" context="initialize">
+        <createTable tableName="rental">
+            <column name="calevent_id" type="bigint" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="guests" type="bigint">
+            	<constraints nullable="false" />
+            </column> 
+            <column name="name" type="varchar(64)">
+            	<constraints />
+            </column>
+            <column name="phone" type="varchar(64)">
+            	<constraints />
+            </column>
+            <column name="notes" type="varchar(512)">
+            	<constraints />
+            </column>
+            <column name="schedule_id" type="bigint" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 
-	<changeSet id="4" author="jdisser" context="initialize">
+	<changeSet id="6" author="jdisser" context="initialize">
         <createTable tableName="property">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -95,8 +148,20 @@
         </createTable>
     </changeSet>
     
+    <changeSet author="jdisser" id="7" context="initialize">
+        <addForeignKeyConstraint baseColumnNames="calevent_id" baseTableName="rental" constraintName="fk_rental_calevent" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="calevent" />
+    </changeSet>
     
+    <changeSet author="jdisser" id="8" context="initialize">
+        <addForeignKeyConstraint baseColumnNames="schedule_id" baseTableName="rental" constraintName="fk_rental_schedule" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="schedule" />
+    </changeSet>
 
-	
+	<changeSet author="jdisser" id="9" context="initialize">
+        <addForeignKeyConstraint baseColumnNames="schedule_id" baseTableName="property" constraintName="fk_property_schedule" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="schedule" />
+    </changeSet>
+    
+    <changeSet author="jdisser" id="10" context="initialize">
+        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="property" constraintName="fk_property_address" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="address" />
+    </changeSet>
 
 </databaseChangeLog>
