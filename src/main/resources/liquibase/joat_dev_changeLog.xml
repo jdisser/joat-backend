@@ -60,9 +60,6 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="type" type="varchar(16)">
-            	<constraints nullable="false" />
-            </column>
             <column name="startdate" type="datetime">
             	<constraints nullable="false"/>
             </column>
